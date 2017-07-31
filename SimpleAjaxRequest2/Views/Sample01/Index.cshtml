@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    
+</head>
+<body>
+    <div>
+        @using (Ajax.BeginForm(
+                            "Index",        // action
+                            "Sample01",     // controller
+                            null, new AjaxOptions()
+                            {
+                                UpdateTargetId = "lblResult",
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "POST"
+                            },
+                            new { id = "SampleForm" }       //attributes
+                            ))
+        {
+            <span>Enter First: </span> @Html.TextBox("txtFirstNo") <br/>
+            <span>Enter Second:</span> @Html.TextBox("txtSecondNo") <br />
+            <span id="lblResult"></span>
+            <button type="submit">Show</button>
+
+        }
+    </div>
+</body>
+</html>
